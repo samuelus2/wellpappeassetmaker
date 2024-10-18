@@ -5,6 +5,7 @@
 package assetmaker;
 
 import java.awt.Color;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -17,13 +18,19 @@ public class saluRGBchooser extends javax.swing.JPanel {
      */
     public saluRGBchooser() {
         initComponents();
+        refresh();
     }
+    
     public saluRGBchooser(int r, int g, int b) {
         this.r = r;
         this.g = g;
         this.b = b;
         initComponents();
         refresh();
+        
+        //txfHex.getDocument().addDocumentListener(new DocumentListener() {
+    // implement the methods
+        //});
     }
 
     int r = 0;
@@ -38,125 +45,254 @@ public class saluRGBchooser extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        sldR = new javax.swing.JSlider();
-        sldG = new javax.swing.JSlider();
-        sldB = new javax.swing.JSlider();
         previewPanel = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblPreview = new javax.swing.JLabel();
+        pnlSpn = new javax.swing.JPanel();
+        lblR = new javax.swing.JLabel();
+        spnR = new javax.swing.JSpinner();
+        lblG = new javax.swing.JLabel();
+        spnG = new javax.swing.JSpinner();
+        lblB = new javax.swing.JLabel();
+        spnB = new javax.swing.JSpinner();
+        txfHex = new javax.swing.JTextField();
+        lblHex = new javax.swing.JLabel();
 
-        sldR.setMaximum(255);
-        sldR.setValue(105);
-        sldR.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                sldRStateChanged(evt);
-            }
-        });
+        previewPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        sldG.setMaximum(255);
-        sldG.setValue(0);
-        sldG.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                sldGStateChanged(evt);
-            }
-        });
-
-        sldB.setMaximum(255);
-        sldB.setValue(255);
-        sldB.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                sldBStateChanged(evt);
-            }
-        });
+        lblPreview.setText("preview:");
 
         javax.swing.GroupLayout previewPanelLayout = new javax.swing.GroupLayout(previewPanel);
         previewPanel.setLayout(previewPanelLayout);
         previewPanelLayout.setHorizontalGroup(
             previewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(previewPanelLayout.createSequentialGroup()
+                .addComponent(lblPreview)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         previewPanelLayout.setVerticalGroup(
             previewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(previewPanelLayout.createSequentialGroup()
+                .addComponent(lblPreview)
+                .addGap(0, 43, Short.MAX_VALUE))
         );
 
-        jTextField1.setText("jTextField1");
+        pnlSpn.setBackground(new java.awt.Color(0, 204, 255));
 
-        jButton1.setText("jButton1");
+        lblR.setText("R:");
 
-        jLabel1.setText("jLabel1");
+        spnR.setModel(new javax.swing.SpinnerNumberModel(0, 0, 255, 1));
+        spnR.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spnRStateChanged(evt);
+            }
+        });
+
+        lblG.setText("G:");
+
+        spnG.setModel(new javax.swing.SpinnerNumberModel(0, 0, 255, 1));
+        spnG.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spnGStateChanged(evt);
+            }
+        });
+
+        lblB.setText("B:");
+
+        spnB.setModel(new javax.swing.SpinnerNumberModel(0, 0, 255, 1));
+        spnB.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spnBStateChanged(evt);
+            }
+        });
+
+        txfHex.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txfHexCaretUpdate(evt);
+            }
+        });
+
+        lblHex.setText("hex:");
+
+        javax.swing.GroupLayout pnlSpnLayout = new javax.swing.GroupLayout(pnlSpn);
+        pnlSpn.setLayout(pnlSpnLayout);
+        pnlSpnLayout.setHorizontalGroup(
+            pnlSpnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSpnLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlSpnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblG)
+                    .addComponent(lblR)
+                    .addComponent(lblB)
+                    .addComponent(lblHex, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlSpnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(spnB)
+                    .addComponent(spnG, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(spnR, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                    .addComponent(txfHex))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlSpnLayout.setVerticalGroup(
+            pnlSpnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSpnLayout.createSequentialGroup()
+                .addGroup(pnlSpnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblR)
+                    .addComponent(spnR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlSpnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblG)
+                    .addComponent(spnG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlSpnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(spnB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblB))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlSpnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txfHex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblHex))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addComponent(previewPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(sldB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(sldG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(sldR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(previewPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel1)))
-                .addGap(65, 65, 65))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(pnlSpn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(sldR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sldG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sldB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(previewPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(pnlSpn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addComponent(previewPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void sldRStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldRStateChanged
-        r = sldR.getValue();
+    private void spnRStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnRStateChanged
+        
+        r = (int) spnR.getValue();
         refresh();
-    }//GEN-LAST:event_sldRStateChanged
+        changeHexString();
+        System.out.println("r" + r);
+    }//GEN-LAST:event_spnRStateChanged
 
-    private void sldGStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldGStateChanged
-        g = sldG.getValue();
+    private void spnGStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnGStateChanged
+        g = (int) spnG.getValue();
         refresh();
-    }//GEN-LAST:event_sldGStateChanged
+        changeHexString();
+        System.out.println("g" + g);
+        
+    }//GEN-LAST:event_spnGStateChanged
 
-    private void sldBStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldBStateChanged
-       b = sldB.getValue();
-       refresh();
-    }//GEN-LAST:event_sldBStateChanged
+    private void spnBStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnBStateChanged
+        b = (int) spnB.getValue();
+        refresh();
+        changeHexString();
+        System.out.println("b" + b);
+        
+    }//GEN-LAST:event_spnBStateChanged
+
+    private void txfHexCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txfHexCaretUpdate
+        parseHexString(txfHex.getText());
+    }//GEN-LAST:event_txfHexCaretUpdate
 
     private void refresh() {
         previewPanel.setBackground(new Color(r, g, b));
+        lblPreview.setForeground(new Color(255-r, 255-g, 255-b));
+    }
+    
+    private void changeHexString() {
+        String hexString = "";
+        //(((r2) << 16) | ((g2) << 8) | (b2))
+        // short r = (short)((rgb >> 16) & 0xFF), g = (short)((rgb >> 8) & 0xFF), b = (short)(rgb & 0xFF);
+        int rgbVal = (r << 16) | (g << 8) | b;
+        hexString += Integer.toHexString(rgbVal);
+        txfHex.setText(hexString);
+    }
+    
+    private void refreshSpinners() {
+        
+        Runnable refreshSpn = new Runnable() {
+            @Override
+            public void run() {
+                spnR.setValue(r);
+                spnG.setValue(g);
+                spnB.setValue(b);
+            }
+        };       
+        SwingUtilities.invokeLater(refreshSpn);
+    }
+    
+    boolean blockhexstring = false;
+    
+    private void parseHexString(String hexString) {
+
+        if(blockhexstring) return;
+        
+        if(hexString.startsWith("0x")) hexString = hexString.replace("0x", "");
+        
+        if(hexString.length() == 0) return;
+        
+        String legalLetters = "0123456789ABCDEF";
+        hexString = hexString.toUpperCase();
+        
+        String hexString2 = "";
+        int len = 0;
+        
+        for (int i = 0; i < hexString.length(); i++) {
+            if(legalLetters.contains(String.valueOf(hexString.charAt(i)))) {
+                if(len >= 6) break;
+                hexString2 += String.valueOf(hexString.charAt(i));
+                len++;
+            }
+        }
+        
+        if(len != 0) {
+            int rgb = Integer.parseInt(hexString2, 16);
+            r = ((rgb >> 16) & 0xFF); 
+            g = ((rgb >> 8) & 0xFF); 
+            b = (rgb & 0xFF);
+            refresh();
+            refreshSpinners();
+        }
+        
+        final String hexStringF = hexString2;
+        
+        Runnable refreshTxf = new Runnable() {
+            @Override
+            public void run() {
+                blockhexstring = true;
+                txfHex.setText(hexStringF);
+                blockhexstring = false;
+            }
+        };       
+        SwingUtilities.invokeLater(refreshTxf);
+    }
+    
+    public int getRGB() {
+        return  (r << 16) | (g << 8) | b;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblB;
+    private javax.swing.JLabel lblG;
+    private javax.swing.JLabel lblHex;
+    private javax.swing.JLabel lblPreview;
+    private javax.swing.JLabel lblR;
+    private javax.swing.JPanel pnlSpn;
     private javax.swing.JPanel previewPanel;
-    private javax.swing.JSlider sldB;
-    private javax.swing.JSlider sldG;
-    private javax.swing.JSlider sldR;
+    private javax.swing.JSpinner spnB;
+    private javax.swing.JSpinner spnG;
+    private javax.swing.JSpinner spnR;
+    private javax.swing.JTextField txfHex;
     // End of variables declaration//GEN-END:variables
 }

@@ -73,6 +73,7 @@ public class Materializer extends javax.swing.JPanel {
         scrList = new javax.swing.JScrollPane();
         pnlList = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
+        saluRGBchooser1 = new assetmaker.saluRGBchooser();
 
         matList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -183,7 +184,7 @@ public class Materializer extends javax.swing.JPanel {
         pnlList.setLayout(pnlListLayout);
         pnlListLayout.setHorizontalGroup(
             pnlListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+            .addGap(0, 154, Short.MAX_VALUE)
         );
         pnlListLayout.setVerticalGroup(
             pnlListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,8 +209,8 @@ public class Materializer extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(scrList)
-                        .addGap(18, 18, 18)
+                        .addComponent(scrList, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -217,8 +218,11 @@ public class Materializer extends javax.swing.JPanel {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(64, 64, 64)
-                                .addComponent(jButton2)))
-                        .addGap(143, 143, 143))
+                                .addComponent(jButton2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(saluRGBchooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(47, 47, 47))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnNewMat, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -242,7 +246,9 @@ public class Materializer extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)
                         .addGap(58, 58, 58)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(saluRGBchooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -438,9 +444,8 @@ public class Materializer extends javax.swing.JPanel {
         }
         paintSelected();
         pnlList.repaint();
-        pnlList.setPreferredSize(new Dimension(pnlList.getWidth(), materials.size()*buttonH));
+        pnlList.setPreferredSize(new Dimension(200, materials.size()*buttonH));
         scrList.revalidate();
-
     }
     
     public void deleteEntry(int tbd) {
@@ -543,6 +548,7 @@ public class Materializer extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JList<String> matList;
     private javax.swing.JPanel pnlList;
+    private assetmaker.saluRGBchooser saluRGBchooser1;
     private javax.swing.JScrollPane scrList;
     private javax.swing.JTextField txfImage;
     private javax.swing.JTextField txfName;
